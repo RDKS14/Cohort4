@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+{% include 'header.html' %}
+{% block body %}
+{% if records %}
+<h1>{{ description }}</h1>
+    <h2 class="lead">>There are {{ records|length }} records in the Products table!</h2>
+    <table>
+        <tr><th>Product ID</th><th>Product</th><th>Gender</th><th>Price</th><th>Quantity Small</th>
+          <th>Quantity Medium</th><th>Quantity Large</th><th>Quantity XLarge</th></tr>
+
+        {% for record in records %}
+        <tr>
+            <td>{{ record['Product_id'] }} </td>
+            <td>{{ record['Product_name'] }} </td>
+            <td>{{ record['Gender'] }} </td>
+            <td>{{ record['Price'] }} </td>
+            <td>{{ record['Quantity_Small'] }} </td>
+            <td>{{ record['Quantity_Medium'] }} </td>
+            <td>{{ record['Quantity_Large'] }} </td>
+            <td>{{ record['Quantity_Xlarge'] }} </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+<h2>No records returned.</h2>
+{% endif %}
+
+{% endblock %}
