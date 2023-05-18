@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+{% include 'header.html' %}
+
+{% block body %}
+
+    <!-- Form to add new actor to the Actor table -->
+        <h1>{{title}}</h1>
+        <p>{{description}}</p>
+        <p> <a href="/">Home</a></p>
+<div class ="form">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        {{ form.first_name.label }} {{ form.first_name }}
+        <br>
+        {{ form.last_name.label }} {{ form.last_name }}
+        <br>
+        {{ form.Email_Address.label }} {{ form.Email_Address }}
+        <br>
+        {{ form.Username.label }} {{ form.Username }}
+        <br>
+        {{ form.Password.label }} {{ form.Password }}
+        <br>
+        {{ form.submit }}
+        {{ message }}
+    </form>
+
+</div>
+
+{% endblock %}

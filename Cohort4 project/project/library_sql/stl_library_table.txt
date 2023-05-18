@@ -1,0 +1,57 @@
+-- CREATE CUSTOMER TABLE
+
+CREATE TABLE customers (
+    cust_id INT NOT NULL,
+    cust_first_name VARCHAR(24),
+    cust_last_name VARCHAR(24),
+    cust_address VARCHAR(128),
+    cust_tel_no INT NOT NULL,
+    book_id_out VARCHAR(12),
+    issued_by_id VARCHAR(12),
+    book_returned_date DATE,
+    book_overdue VARCHAR(1),
+    days_over_due VARCHAR(3),
+    todays_date TIMESTAMP NOT NULL,
+    PRIMARY KEY (cust_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+-- CREATE MANAGER TABLE 
+
+CREATE TABLE manager (
+    emp_id INT NOT NULL,
+    emp_first_name VARCHAR(24),
+    emp_last_name VARCHAR(24),
+    emp_tel_no INT NOT NULL,
+    hours_worked INT,
+    no_books_issued INT,
+    per_hour_issued DECIMAL(2,2),
+    emp_address VARCHAR(128),
+    PRIMARY KEY (emp_id)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    
+   CREATE TABLE inventory (
+    book_title VARCHAR (128),
+    book_id VARCHAR(4),
+    book_in VARCHAR(1),
+    book_out VARCHAR(1),
+    due_date DATE,
+    cust_id INT,
+    booked_out DATE,
+    PRIMARY KEY (book_id),
+    FOREIGN KEY (cust_id) REFERENCES customers(cust_id)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4; 
+
+   -- CREATE TABLE FOR BOOK TRACKING
+    
+CREATE TABLE tracking (
+    book_title VARCHAR (128),
+    book_id VARCHAR(4),
+    book_isle VARCHAR (1),
+    book_shelf INT,
+    book_in VARCHAR (1),
+    book_out VARCHAR (1),
+    due_date DATE,
+    booked_out DATE,
+    FOREIGN KEY (book_id) REFERENCES inventory(book_id)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
